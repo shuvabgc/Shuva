@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="Empctrl">
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <input type="hidden" ng-model="empid">
+                <div class="col-md-5">
+                    <label class="control-label text-right rqrd" for="">Name</label>
+                   
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control input-group rqrd" type="text"  ng-model="name" placeholder="Enter your name">
+                    
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label class="control-label text-right rqrd" for="">Address</label>
+                  
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text"  ng-model="address" placeholder="Enter your address">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label class="control-label text-right rqrd" for="">Salary</label>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text"  ng-model="salary" placeholder="Enter your salary">
+                </div>
+
+
+            </div>
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label class="control-label text-right rqrd" for="">Email</label>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="email"  ng-model="email" placeholder="Enter your email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label class="control-label text-right rqrd" for="">DOB</label>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="date"  ng-model="dob" placeholder="Enter your date of birth">
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label class="control-label text-right rqrd" for="">Designation</label>
+                </div>
+                <div class="col-md-7">
+                    <select class="form-control" ng-model="designation" ng-options="d.DesignId as d.DesignationName for d in designBind">
+                        <option value="">-- Designation Catagory-- </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-5"> </div>
+                <div class="col-md-7">
+                    <input  type="button" value="Submit" ng-click="insertEmp();"/>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="center">Employee Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th> Salary </th>
+                <th> Email </th>
+                <th >DOB</th>
+                <th>Designation Name</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="e in Empbind">
+                <td class="center">{{e.Empid}}</td>
+                <td>{{e.Empname}}</td>
+                <td class="hidden-480">{{e.Empaddress}}</td>
+                <td>{{e.Empsalary}}</td>
+                <td>{{e.Empemail}}</td>
+                <td>{{e.Empdateofbirth| dateFilter | date:"dd-MM-yyyy"}}</td>
+                <td>{{e.DesignationName}}</td>
+                <td>
+                    <input  type="button" value="Edit" ng-click="editEmp(e);"/>
+                    <input type="button" value="Delete" ng-click="deleteEmp(e.Empid);" />
+                </td>
+             
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
